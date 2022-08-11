@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:teste_timeline/container_expansivel.dart';
+import 'package:teste_timeline/components/expandable_component_timeline.dart';
 import 'package:teste_timeline/timeline/timeline_item_data.dart';
 
 class TimelineItem extends StatelessWidget {
@@ -32,16 +32,24 @@ class TimelineItem extends StatelessWidget {
       );
     }
 
-    Widget barra() {
+    Widget barra([bool checked]) {
       return Container(
         width: 2,
         decoration: BoxDecoration(
-          color: itemData.checked ? indicatorColor : Colors.grey,
+          color: checked ?? itemData.checked ? indicatorColor : Colors.grey,
         ),
       );
     }
 
     Widget containerInfo() {
+      return Container(
+        // margin: EdgeInsets.only(right: 50),
+        padding: EdgeInsets.symmetric(vertical: 15),
+        // width: width - 100,
+        child: ExpandableComponentTimeline(
+          itemData: itemData,
+        ),
+      );
       return Container(
         margin: EdgeInsets.symmetric(horizontal: 10),
         child: Card(
@@ -58,9 +66,10 @@ class TimelineItem extends StatelessWidget {
     return Container(
       width: width,
       //padding: EdgeInsets.all(20),
+      // color: Colors.green,
       child: IntrinsicHeight(
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               //color: Colors.green,
@@ -68,26 +77,27 @@ class TimelineItem extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  if (itemData.previous == null) ...{
+                  Expanded(
+                      flex: 1,
+                      child: itemData.previous == null
+                          ? Container()
+                          : barra(itemData.previous.checked)),
+                  /*  if (itemData.previous == null) ...{
                     Container(
                       height: 20,
                     )
                   } else ...{
                     Container(height: 20, child: barra()),
-                  },
+                  }, */
                   indicador(),
-                  Expanded(child: barra())
+                  Expanded(flex: 3, child: barra())
                 ],
               ),
             ),
-            Expanded(
-                flex: 5,
-                child: ContainerExpansivel(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 0),
-                    child: containerInfo(),
-                  ),
-                ))
+            Expanded(flex: 5, child: containerInfo()),
+            SizedBox(
+              width: 30,
+            )
           ],
         ),
       ),

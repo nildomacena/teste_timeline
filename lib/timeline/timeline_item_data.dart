@@ -21,23 +21,69 @@ class TimelineItemData {
         TimelineItemData(
             checked: true,
             current: false,
+            date: DateTime.now(),
             title: 'Cota Contemplada - Com Restrição'),
         TimelineItemData(
-            checked: true, current: false, title: 'Pagamento de Lance'),
+            previous: TimelineItemData(
+                checked: true,
+                current: false,
+                date: DateTime.now(),
+                title: 'Cota Contemplada - Com Restrição'),
+            checked: true,
+            date: DateTime.now(),
+            current: false,
+            title: 'Pagamento de Lance'),
         TimelineItemData(
             checked: true,
             current: false,
+            previous: TimelineItemData(
+                checked: true,
+                current: false,
+                date: DateTime.now(),
+                title: 'Cota Contemplada - Com Restrição'),
+            date: DateTime.now(),
             title: 'Envio da Documentação Cadastral'),
         TimelineItemData(
-            checked: false, current: false, title: 'Análise de Crédito'),
+            checked: false,
+            current: false,
+            date: DateTime.now(),
+            previous: TimelineItemData(
+                checked: true,
+                current: false,
+                title: 'Cota Contemplada - Com Restrição'),
+            title: 'Análise de Crédito'),
         TimelineItemData(
-            checked: false, current: false, title: 'Análise do Bem'),
+            checked: false,
+            current: false,
+            previous: TimelineItemData(
+                checked: false,
+                current: false,
+                title: 'Cota Contemplada - Com Restrição'),
+            title: 'Análise do Bem'),
         TimelineItemData(
-            checked: false, current: false, title: 'Recebimento do Contrato'),
+            checked: false,
+            current: false,
+            previous: TimelineItemData(
+                checked: false,
+                current: false,
+                title: 'Cota Contemplada - Com Restrição'),
+            title: 'Recebimento do Contrato'),
         TimelineItemData(
-            checked: false, current: false, title: 'Alienação do Bem'),
+            checked: false,
+            current: false,
+            previous: TimelineItemData(
+                checked: false,
+                current: false,
+                title: 'Cota Contemplada - Com Restrição'),
+            title: 'Alienação do Bem'),
         TimelineItemData(
-            checked: false, current: false, title: 'Pagamento do Crédito'),
+            checked: false,
+            current: false,
+            previous: TimelineItemData(
+                checked: false,
+                current: false,
+                title: 'Cota Contemplada - Com Restrição'),
+            title: 'Pagamento do Crédito'),
       ];
 }
 
