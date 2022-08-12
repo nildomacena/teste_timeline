@@ -19,7 +19,7 @@ class ExpandableComponentTimeline extends StatelessWidget {
 
     Widget tituloExpandable = Expanded(
       child: Container(
-        height: 40,
+        height: 60,
         alignment: Alignment.centerLeft,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
