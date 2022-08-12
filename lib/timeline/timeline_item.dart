@@ -14,27 +14,44 @@ class TimelineItem extends StatelessWidget {
     Color indicatorColor = Color(0xFF5451FB);
 
     Widget indicador() {
+      IconData icon = itemData.checked
+          ? LineIcons.check
+          : itemData.previous.checked
+              ? LineIcons.horizontalEllipsis
+              : null;
       return Container(
-        height: 40,
-        width: 40,
+        height: 35,
+        width: 35,
         child: itemData.checked
             ? Icon(
                 LineIcons.check,
                 color: Colors.white,
-                size: 26,
+                size: 24,
               )
-            : null,
+            : itemData.current
+                ? Icon(
+                    LineIcons.horizontalEllipsis,
+                    color: Colors.white,
+                    size: 24,
+                  )
+                : null,
         decoration: BoxDecoration(
-            color: itemData.checked ? indicatorColor : Colors.transparent,
+            color: itemData.checked
+                ? indicatorColor
+                : itemData.current
+                    ? Colors.cyan
+                    : Colors.transparent,
             border: Border.all(
-                color: itemData.checked ? Colors.transparent : indicatorColor),
+                color: itemData.checked || itemData.current
+                    ? Colors.transparent
+                    : Colors.grey),
             shape: BoxShape.circle),
       );
     }
 
     Widget barra([bool checked]) {
       return Container(
-        width: 2,
+        width: 3,
         decoration: BoxDecoration(
           color: checked ?? itemData.checked ? indicatorColor : Colors.grey,
         ),
@@ -43,22 +60,9 @@ class TimelineItem extends StatelessWidget {
 
     Widget containerInfo() {
       return Container(
-        // margin: EdgeInsets.only(right: 50),
         padding: EdgeInsets.symmetric(vertical: 15),
-        // width: width - 100,
         child: ExpandableComponentTimeline(
           itemData: itemData,
-        ),
-      );
-      return Container(
-        margin: EdgeInsets.symmetric(horizontal: 10),
-        child: Card(
-          child: Container(
-            padding: EdgeInsets.all(20),
-            child: Text(
-                'Sit occaecat consectetur veniam nulla voluptate voluptate aliqua commodo consectetur exercitation consequat. Labore labore minim ipsum mollit tempor eu.' *
-                    2),
-          ),
         ),
       );
     }

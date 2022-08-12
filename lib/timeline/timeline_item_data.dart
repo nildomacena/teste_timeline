@@ -6,14 +6,15 @@ class TimelineItemData {
   TimelineItemData previous;
   String title;
   DateTime date;
+  List<String> observacoes;
 
-  TimelineItemData({
-    @required this.checked,
-    @required this.current,
-    this.previous,
-    this.date,
-    this.title,
-  }) {
+  TimelineItemData(
+      {@required this.checked,
+      @required this.current,
+      this.previous,
+      this.date,
+      this.title,
+      this.observacoes}) {
     date = DateTime.now();
   }
 
@@ -45,7 +46,7 @@ class TimelineItemData {
             title: 'Envio da Documentação Cadastral'),
         TimelineItemData(
             checked: false,
-            current: false,
+            current: true,
             date: DateTime.now(),
             previous: TimelineItemData(
                 checked: true,

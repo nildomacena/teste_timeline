@@ -17,9 +17,43 @@ class ExpandableComponentTimeline extends StatelessWidget {
   Widget build(BuildContext context) {
     Size screen = MediaQuery.of(context).size;
 
-    Widget containerObservacoes() {}
+    Widget tituloExpandable = Expanded(
+      child: Container(
+        height: 40,
+        alignment: Alignment.centerLeft,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            AutoSizeText(
+              '${itemData.title}',
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontFamily: StyleText.fontBold,
+                color: StyleColors.colorPrimary,
+              ),
+              maxLines: 2,
+              //style: StyleText.textPageColorPrimaryLargeBold,
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            if (itemData.date != null)
+              Container(
+                alignment: Alignment.centerLeft,
+                child: Text('Concluído dia ${Utils.formatDate(itemData.date)}',
+                    style: TextStyle(
+                      fontFamily: StyleText.fontRegular,
+                      fontSize: 13,
+                      color: StyleColors.colorComplement1,
+                    )),
+              )
+          ],
+        ),
+      ),
+    );
 
     return ExpandableNotifier(
+      initialExpanded: false,
       child: Container(
         margin: EdgeInsets.symmetric(vertical: margin),
         padding: EdgeInsets.symmetric(horizontal: 10),
@@ -30,78 +64,46 @@ class ExpandableComponentTimeline extends StatelessWidget {
           borderRadius: BorderRadius.circular(5.0),
         ),
         child: Expandable(
-          // <-- Driven by ExpandableController from ExpandableNotifier
           collapsed: ExpandableButton(
-            // <-- Expands when tapped on the cover photo
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 5),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    tituloExpandable,
+                    SizedBox(width: 10),
+                    Icon(LineIcons.angleDown,
+                        color: StyleColors.colorSecondary, size: 28),
+                  ]),
+            ),
+          ),
+          expanded: ExpandableButton(
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 5),
               child: Column(
                 children: [
-                  Expanded(
+                  Container(
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Expanded(
-                            child: Container(
-                              height: 40,
-                              //width: screen.width,
-
-                              child: AutoSizeText(
-                                '${itemData.title}',
-                                style: TextStyle(
-                                  fontFamily: StyleText.fontBold,
-                                  color: StyleColors.colorPrimary,
-                                ),
-                                maxLines: 2,
-                                //style: StyleText.textPageColorPrimaryLargeBold,
-                              ),
-                            ),
-                          ),
+                          tituloExpandable,
                           SizedBox(width: 10),
-                          Icon(LineIcons.angleDown,
+                          Icon(LineIcons.angleUp,
                               color: StyleColors.colorSecondary, size: 28),
                         ]),
                   ),
-                  if (itemData.date != null)
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                          'Concluído dia ${Utils.formatDate(itemData.date)}'),
-                    )
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Expanded(
+                    child: ContainerObservacoesTimeline([
+                      '08/08/2022 - Pendente',
+                      '09/08/2022 - Cadastro Concluído',
+                    ]),
+                  )
                 ],
               ),
-            ),
-          ),
-          expanded: ExpandableButton(
-            // <-- Collapses when tapped on
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 5),
-              child: Column(children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Container(
-                      height: 40,
-                      child: AutoSizeText(
-                        '${itemData.title}',
-                        style: TextStyle(
-                          fontFamily: StyleText.fontBold,
-                          color: StyleColors.colorPrimary,
-                        ),
-                        maxLines: 2,
-                        //style: StyleText.textPageColorPrimaryLargeBold,
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    Icon(LineIcons.angleUp,
-                        color: StyleColors.colorPrimary, size: 28),
-                  ],
-                ),
-                ContainerObservacoesTimeline([
-                  '08/08/2022 - Pendente',
-                  '09/08/2022 - Cadastro Concluído'
-                ])
-              ]),
             ),
           ),
         ), /* Column(
