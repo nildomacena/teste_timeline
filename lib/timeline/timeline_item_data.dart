@@ -23,16 +23,30 @@ class TimelineItemData {
             checked: true,
             current: false,
             date: DateTime.now(),
+            observacoes: [
+              '08/08/2022 - Pendente',
+              '09/08/2022 - Cadastro Concluído',
+            ],
             title: 'Cota Contemplada - Com Restrição'),
         TimelineItemData(
             previous: TimelineItemData(
                 checked: true,
                 current: false,
                 date: DateTime.now(),
+                observacoes: [
+                  '08/08/2022 - Pendente',
+                  '09/08/2022 - Cadastro Concluído',
+                ],
                 title: 'Cota Contemplada - Com Restrição'),
             checked: true,
             date: DateTime.now(),
             current: false,
+            observacoes: [
+              '08/08/2022 - Pendente',
+              '08/08/2022 - Pendente',
+              '08/08/2022 - Pendente',
+              '09/08/2022 - Cadastro Concluído',
+            ],
             title: 'Pagamento de Lance'),
         TimelineItemData(
             checked: true,

@@ -97,10 +97,13 @@ class ExpandableComponentTimeline extends StatelessWidget {
                     SizedBox(
                       height: 10,
                     ),
-                    ContainerObservacoesTimeline([
+                    if (itemData.observacoes != null &&
+                        itemData.observacoes.isNotEmpty)
+                      ContainerObservacoesTimeline(itemData.observacoes),
+                    /*  ContainerObservacoesTimeline([
                       '08/08/2022 - Pendente',
                       '09/08/2022 - Cadastro Concluído',
-                    ]),
+                    ]), */
                   ],
                 ),
               ),
