@@ -81,18 +81,20 @@ class TimelineItem extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Expanded(
+                  /* Expanded(
                       flex: 1,
                       child: itemData.previous == null
-                          ? Container()
-                          : barra(itemData.previous.checked)),
-                  /*  if (itemData.previous == null) ...{
+                          ? Container(
+                              height: 20,
+                            )
+                          : barra(itemData.previous.checked)), */
+                  if (itemData.previous == null) ...{
                     Container(
-                      height: 20,
+                      height: 40,
                     )
                   } else ...{
-                    Container(height: 20, child: barra()),
-                  }, */
+                    Expanded(flex: 2, child: barra(itemData.previous.checked)),
+                  },
                   indicador(),
                   Expanded(flex: 3, child: barra())
                 ],
