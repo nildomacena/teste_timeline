@@ -65,7 +65,7 @@ class ExpandableComponentTimeline extends StatelessWidget {
         ),
         child: Expandable(
           collapsed: ExpandableButton(
-            child: Container(
+            child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 5),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -81,28 +81,28 @@ class ExpandableComponentTimeline extends StatelessWidget {
           expanded: ExpandableButton(
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 5),
-              child: IntrinsicHeight(
-                child: Column(
-                  children: [
-                    Container(
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            tituloExpandable,
-                            SizedBox(width: 10),
-                            Icon(LineIcons.angleUp,
-                                color: StyleColors.colorSecondary, size: 28),
-                          ]),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    ContainerObservacoesTimeline([
+              child: Column(
+                children: [
+                  Container(
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          tituloExpandable,
+                          SizedBox(width: 10),
+                          Icon(LineIcons.angleUp,
+                              color: StyleColors.colorSecondary, size: 28),
+                        ]),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Expanded(
+                    child: ContainerObservacoesTimeline([
                       '08/08/2022 - Pendente',
                       '09/08/2022 - Cadastro Concluído',
                     ]),
-                  ],
-                ),
+                  )
+                ],
               ),
             ),
           ),
